@@ -1282,6 +1282,10 @@ article .content .caption {
 }
 
 #footer {
+    position: fixed;
+    bottom: 0;
+    left: 30%;
+    margin-left: -350px;
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 11px;
