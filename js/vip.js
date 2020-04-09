@@ -114,8 +114,10 @@ function SeeMe() {
 			}
 		});
 	}
-	else if(url)
+	else if(url){
 	window.open(selurl+url);
+	tv1.innerHTML = '新窗口播放...';
+}
 	//tv1.innerHTML = '<span><a target="_blank" href="'+selurl+url+'">'+ zz + '</a></span>';
 	else
 	tv1.innerHTML = '请输入网址';
