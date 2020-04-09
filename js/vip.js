@@ -3,6 +3,7 @@ var tvobj  = document.getElementById("tvv");
 
 var VIP_INFO =new Array(
 ["思古","https://api.sigujx.com/jx/?url="],
+["金桥","http://jqaaa.com/jx.php?url="],
 ["无限","https://v.88tv.org/?v="],
 ["全网","https://jx.lache.me/cc/?url="],
 ["拉车","https://jx.lache.me/cc/?url="],
