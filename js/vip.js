@@ -11,17 +11,17 @@ var VIP_INFO =new Array(
 ["无名","https://www.administratorw.com/video.php?url="],
 ["人人","https://vip.mpos.ren/v/?url="],
 ["花园","https://j.zz22x.com/jx/?url="],
-["穷二代","https://jx.ejiafarm.com/dy.php?url="],
-["YANGJU","https://cdn.yangju.vip/k/?url="],
+["穷二","https://jx.ejiafarm.com/dy.php?url="],
+["超清","https://cdn.yangju.vip/k/?url="],
 ["AB33","https://jx.ab33.top/vip/?url="],
-["108","https://jx.000180.top/jx/?url="],
+["180","https://jx.000180.top/jx/?url="],
 ["58","https://jx.km58.top/jx/?url="],
 ["DU2","http://jx.du2.cc/?url="],
-["DRGXJ","http://jx.drgxj.com/?url="],
-["618GE","http://jx.618ge.com/?url="],
-["598110","http://jx.598110.com/?url="],
-["BEAACC","https://beaacc.com/api.php?url="],
-["IDC126","https://jx.idc126.net/jx/?url="]
+["DRG","http://jx.drgxj.com/?url="],
+["618","http://jx.618ge.com/?url="],
+["598","http://jx.598110.com/?url="],
+["瀚晶","https://beaacc.com/api.php?url="],
+["IDC","https://jx.idc126.net/jx/?url="]
 
 );
 
@@ -56,12 +56,12 @@ $.ajaxPrefilter(function (options) {
 	}
 });
 
-var code = null;
+
 function GetCode(){
 	var url  = document.getElementById("url").value;
 	if(url){
 		tvobj.innerHTML = "Load...";
-		code = null;
+		var code = null;
 		$.get(url,function (response) {
 			//$("#html").html(response);
 			var mydata = response.match(new RegExp('LIST_INFO'+'(.*?)'+'data'))[1];
@@ -74,7 +74,7 @@ function GetCode(){
 		});
 	}
 }
-
+//https://v.qq.com/x/cover/mpytzuh6n4ku1cs/b0014ppwn7r.html
 function SeeMe() {
 	var selurl = null;
 	var url  = document.getElementById("url").value;
@@ -92,22 +92,35 @@ function SeeMe() {
 		}
 	}
 
-	if(code){
-		tv1.innerHTML = "";
-		var index = url.lastIndexOf("/");
-		var codehead = url.substring(0, index+1);
+	if(url.search("qq.com") != -1){
+		tv1.innerHTML = "Load...";
+		var code = null;
+		$.get(url,function (response) {
+			//$("#html").html(response);
+			var mydata = response.match(new RegExp('LIST_INFO'+'(.*?)'+'data'))[1];
+			mydata = mydata.substring(mydata.indexOf("[") + 1, mydata.indexOf("]"));
 
-		while (code[0][zz++]){
-			tv1.innerHTML += '<span><a target="_blank" href="'+selurl+codehead+code[0][zz-1]+'.html">'+ zz + '</a></span>';
-		}
+			//tvobj.innerHTML = '<textarea rows="10" style="width:100%"/>'+mydata+'</textarea>';//.match(new RegExp('["'+'(.*?)'+'"]'))[1];
+
+			code = new Array(mydata.replace(/\"/g, "").split(','));
+			if(code){
+				tv1.innerHTML = "";
+				var index = url.lastIndexOf("/");
+				var codehead = url.substring(0, index+1);
+
+				while (code[0][zz++]){
+					tv1.innerHTML += '<span><a target="_blank" href="'+selurl+codehead+code[0][zz-1]+'.html">'+ zz + '</a></span>';
+				}
+			}
+		});
 	}
+	else if(url)
+	window.open(selurl+url);
+	//tv1.innerHTML = '<span><a target="_blank" href="'+selurl+url+'">'+ zz + '</a></span>';
 	else
-	tv1.innerHTML = '<span><a target="_blank" href="'+selurl+url+'">'+ zz + '</a></span>';
+	tv1.innerHTML = '请输入网址';
+
 	//document.getElementById("tvv").innerHTML = '<iframe name="tvif" height=200 width=100%  src="'+SLIST[i]+'"> </iframe>' ;
 	//document.getElementById("mv").innerHTML = '<video src="'+selurl+'" width="320" height="240" controls="controls"></video>';
 }
 
-//alert(f("haha").document.body.innerHTML);
-/*var test=document.getElementsByTagName('html')[0].outerHTML;
-alert(test);
-console.log(test);*/
