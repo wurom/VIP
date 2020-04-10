@@ -97,13 +97,12 @@ function SeeMe() {
 		var code = null;
 		$.get(url,function (response) {
 			//$("#html").html(response);
-			var mydata = response.match(new RegExp('LIST_INFO'+'(.*?)'+'data'))[1];
+			//var mydata = response.match(new RegExp('LIST_INFO'+'(.*?)'+'data'))[1];
+			var mydata = response.match(new RegExp('current_topic'+'(.*?)'+',"series_num'))[1];
 			mydata = mydata.substring(mydata.indexOf("[") + 1, mydata.indexOf("]"));
-
 			//tvobj.innerHTML = '<textarea rows="10" style="width:100%"/>'+mydata+'</textarea>';//.match(new RegExp('["'+'(.*?)'+'"]'))[1];
-
 			code = new Array(mydata.replace(/\"/g, "").split(','));
-			if(code){
+			if(code[0].length > 1){
 				tv1.innerHTML = "";
 				var index = url.lastIndexOf("/");
 				var codehead = url.substring(0, index+1);
@@ -112,12 +111,17 @@ function SeeMe() {
 					tv1.innerHTML += '<span><a target="_blank" href="'+selurl+codehead+code[0][zz-1]+'.html">'+ zz + '</a></span>';
 				}
 			}
+			else{
+	      window.open(selurl+url);
+	      tv1.innerHTML = '新窗口播放...';
+      }
+				
 		});
 	}
 	else if(url){
-	window.open(selurl+url);
-	tv1.innerHTML = '新窗口播放...';
-}
+	  window.open(selurl+url);
+	  tv1.innerHTML = '新窗口播放...';
+  }
 	//tv1.innerHTML = '<span><a target="_blank" href="'+selurl+url+'">'+ zz + '</a></span>';
 	else
 	tv1.innerHTML = '请输入网址';
@@ -125,4 +129,3 @@ function SeeMe() {
 	//document.getElementById("tvv").innerHTML = '<iframe name="tvif" height=200 width=100%  src="'+SLIST[i]+'"> </iframe>' ;
 	//document.getElementById("mv").innerHTML = '<video src="'+selurl+'" width="320" height="240" controls="controls"></video>';
 }
-
