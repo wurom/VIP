@@ -83,7 +83,6 @@ function SeeMe() {
 	//var code = new Array(str.replace(/\"/g, "").split(','));
 	var tv1 = document.getElementById("tv1");
 
-	var zz=0;
 	for(var i =0 ;i<see.length;i++){
 		if(see[i].checked){
 			//alert(iframe[i].value);
@@ -98,18 +97,34 @@ function SeeMe() {
 		$.get(url,function (response) {
 			//$("#html").html(response);
 			//var mydata = response.match(new RegExp('LIST_INFO'+'(.*?)'+'data'))[1];
-			var mydata = response.match(new RegExp('current_topic'+'(.*?)'+',"series_num'))[1];
-			mydata = mydata.substring(mydata.indexOf("[") + 1, mydata.indexOf("]"));
+			//var mydata = response.match(new RegExp('current_topic'+'(.*?)'+',"series_num'))[1];
+			//mydata = mydata.substring(mydata.indexOf("[") + 1, mydata.indexOf("]"));
 			//tvobj.innerHTML = '<textarea rows="10" style="width:100%"/>'+mydata+'</textarea>';//.match(new RegExp('["'+'(.*?)'+'"]'))[1];
-			code = new Array(mydata.replace(/\"/g, "").split(','));
-			if(code[0].length > 1){
+			//code = new Array(mydata.replace(/\"/g, "").split(','));
+			var mydata = response.match(new RegExp('update_des'+'(.*?)'+',"comment_show_type'))[1];
+      var jsonstr ='{"'+mydata+'}';
+		  var obj = JSON.parse(jsonstr);
+      var len = obj.vip_ids.length;
+      if(len > 1){
+ 				tv1.innerHTML = "";
+				var index = url.lastIndexOf("/");
+				var codehead = url.substring(0, index+1);
+				     	
+				for (var zz=0;zz < len ;zz++)
+				{
+					if(obj.vip_ids[zz].F == 2)
+					tv1.innerHTML += '<span><a target="_blank" href="'+selurl+codehead+obj.vip_ids[zz].V+'.html">'+ (zz+1) + '</a></span>';
+					else if(obj.vip_ids[zz].F == 7)
+					tv1.innerHTML += '<span><a target="_blank" href="'+selurl+codehead+obj.vip_ids[zz].V+'.html">'+ (zz+1) + 'v</a></span>';	
+				}							
+			/*if(code[0].length > 1){
 				tv1.innerHTML = "";
 				var index = url.lastIndexOf("/");
 				var codehead = url.substring(0, index+1);
 
 				while (code[0][zz++]){
 					tv1.innerHTML += '<span><a target="_blank" href="'+selurl+codehead+code[0][zz-1]+'.html">'+ zz + '</a></span>';
-				}
+				}*/
 			}
 			else{
 	      window.open(selurl+url);
