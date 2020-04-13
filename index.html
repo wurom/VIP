@@ -24,7 +24,7 @@
  <div class="entry clearfix">
 <div>
 			<form  id="tvf" onchange="GetSel()" method="get">选择搜索：
-				<label><input name="tvr" type="radio" value="ts"/>腾讯视频</label>
+				<label><input name="tvr" type="radio" value="ts"/>腾讯</label>
 				<label><input name="tvr" type="radio" value="iqy"/>爱奇艺</label>
 				<label><input name="tvr" type="radio" value="yk"/>优酷</label>
 				<label><input name="tvr" type="radio" value="mg"/>芒果</label>
@@ -36,7 +36,7 @@
 </div>
 
  <div class="entry clearfix">
-			<div><textarea id="url" rows="3" style="width:100%"/></textarea></div>
+			<div><textarea id="url" rows="2" style="width:100%" placeholder="请输入播放网址" onclick="this.focus();this.select()"/></textarea></div>
 </div>
  <div class="entry clearfix">
 			<form  id="see" class="vip" onchange="SeeMe()" method="get"></form>
