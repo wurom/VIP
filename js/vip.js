@@ -25,6 +25,17 @@ var VIP_INFO =new Array(
 
 );
 
+
+function IsURL(strUrl) {
+    var regular = /^\b(((https?|ftp):\/\/)?[-a-z0-9]+(\.[-a-z0-9]+)*\.(?:com|edu|gov|int|mil|net|org|biz|info|name|museum|asia|coop|aero|[a-z][a-z]|((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d))\b(\/[-a-z0-9_:\@&?=+,.!\/~%\$]*)?)$/i
+    if (regular.test(strUrl)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 function GetSel(){
 	var SLIST = new Array("https://v.qq.com/x/search/","https://so.iqiyi.com/","https://www.soku.com/","https://so.mgtv.com/so","about:blank");
 	var iframe = document.getElementById('tvf');
@@ -43,9 +54,13 @@ function GoUrl() {
 }
 
 var see = document.getElementById("see");
-var z =0 ;
-while (VIP_INFO[z++]){
-	see.innerHTML += '<label><input name="seer" type="radio"/>'+VIP_INFO[z-1][0]+'</label>';
+var rid = 0 ;
+//while (VIP_INFO[z++])
+function NoCheck() {
+	see[rid].checked=0;
+}
+for (var z=0;z < VIP_INFO.length ;z++){
+	see.innerHTML += '<label><input name="seer" type="radio"/>'+VIP_INFO[z][0]+'</label>';
 }
 
 $.ajaxPrefilter(function (options) {
@@ -87,10 +102,16 @@ function SeeMe() {
 		if(see[i].checked){
 			//alert(iframe[i].value);
 			selurl = VIP_INFO[i][1];
+			rid = i;
 			break;
 		}
 	}
-
+	
+	if(!IsURL(url)){
+	  tv1.innerHTML = '请输入正确网址';	
+	  return;
+	}
+	
 	if(url.search("qq.com") != -1){
 		tv1.innerHTML = "Load...";
 		var code = null;
@@ -133,13 +154,12 @@ function SeeMe() {
 				
 		});
 	}
-	else if(url){
+	else
+	{
 	  window.open(selurl+url);
 	  tv1.innerHTML = '新窗口播放...';
   }
 	//tv1.innerHTML = '<span><a target="_blank" href="'+selurl+url+'">'+ zz + '</a></span>';
-	else
-	tv1.innerHTML = '请输入网址';
 
 	//document.getElementById("tvv").innerHTML = '<iframe name="tvif" height=200 width=100%  src="'+SLIST[i]+'"> </iframe>' ;
 	//document.getElementById("mv").innerHTML = '<video src="'+selurl+'" width="320" height="240" controls="controls"></video>';
