@@ -19,19 +19,20 @@ var VIP_INFO =new Array(
 ["618","http://jx.618ge.com/?url="],
 ["598","http://jx.598110.com/?url="],
 ["瀚晶","https://beaacc.com/api.php?url="],
-["IDC","https://jx.idc126.net/jx/?url="]
-
+["IDC","https://jx.idc126.net/jx/?url="],
+["ZCH","http://api.myzch.cn/?url="]
+	
 );
 
 var see = document.getElementById("see");
 var rid = 0 ;
-var tvobj  = document.getElementById("tvv");
 var Furl   = "";
 var TvInfo = document.getElementById("play");
 var TvJSON = {};
 
 //检测网址
 function IsURL(strUrl) {
+	//var regular = /^\b(((https?|ftp):\/\/)?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]?)$/i
 	var regular = /^\b(((https?|ftp):\/\/)?[-a-z0-9]+(\.[-a-z0-9]+)*\.(?:com|edu|gov|int|mil|net|org|biz|info|name|museum|asia|coop|aero|[a-z][a-z]|((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d))\b(\/[-a-z0-9_:\@&?=+,.!\/~%\$]*)?)$/i
 	return regular.test(strUrl)
 }
@@ -45,6 +46,7 @@ $.ajaxPrefilter(function (options) {
 
 function GetSel(){
 	var SLIST = new Array("https://v.qq.com/x/search/","https://so.iqiyi.com/","https://www.soku.com/","https://so.mgtv.com/so","about:blank");
+	var tvobj  = document.getElementById("tvv");
 	var iframe = document.getElementById('tvf');
 	for(var i =0 ;i<iframe.length;i++){
 		if(iframe[i].checked){
@@ -78,8 +80,10 @@ function GetCode(){
 			//var mydata = response.match(new RegExp('LIST_INFO'+'(.*?)'+'data'))[1];
 			//mydata = mydata.substring(mydata.indexOf("[") + 1, mydata.indexOf("]"));
 
-			tvobj.innerHTML = '<textarea rows="20" style="width:100%"/>'+response+'</textarea>';//.match(new RegExp('["'+'(.*?)'+'"]'))[1];
-
+			tvobj.innerHTML = '<textarea id = "out" style="width:100%"/></textarea>';//.match(new RegExp('["'+'(.*?)'+'"]'))[1];
+      var cobj = document.getElementById("out");
+      cobj.value = response;
+      cobj.style.height = cobj.scrollHeight + 20 + "px";
 			//code = new Array(mydata.replace(/\"/g, "").split(','));
 
 		}).fail(function () {
@@ -149,11 +153,26 @@ function GetAll() {
 		return;
 	}
 	
-  //see[rid].checked=1;
+  see[rid].checked=1;
   
 	if(url.search("qq.com") != -1){//https://v.qq.com/x/cover/m441e3rjq9kwpsc/l0025jj5k4c.html
+
 		TvInfo.innerHTML = "腾讯剧集解析中...";//https://v.qq.com/x/cover/dxd1v76tmu0wjuj.html
 		TvJSON={};
+		if(url.search("m.v.qq.com") != -1){
+		//http://m.v.qq.com/cover/m/m441e3rjq9kwpsc.html?vid=h0025x3mn7z
+		//http://m.v.qq.com/x/m/play?cid=m441e3rjq9kwpsc&vid=m0025m9timl&ref_pg=page_video_detail
+	   var murl = url.match(/cid=(\w+)/);
+	   if(!murl)
+	      murl =  (url.substring(url.lastIndexOf("\/")+1,url.length)).split('.')[0];
+	   else
+	  	  murl =murl[0].split('=')[1];
+	   if(!murl){
+	    	TvInfo.innerHTML = "cid错误...";
+	    	return;
+	    }
+	    url ='https://v.qq.com/x/cover/'+murl+'.html';
+	  }
 		$.get(url,function (response) {
 			//$("#html").html(response);
 			//var mydata = response.match(new RegExp('LIST_INFO'+'(.*?)'+'data'))[1];
@@ -190,9 +209,12 @@ function GetAll() {
 			TvInfo.innerHTML = "爱奇艺剧集解析中...";//http://www.iqiyi.com/v_19rrokkpxs.html
 			
 			$.get(url,function (response) {
-				var mydata = response.match(new RegExp('albumid'+'(.*?)'+'";'))[1];
-				mydata = mydata.split('"')[1];
-				TvInfo.innerHTML = "返回albumid:"+mydata;
+				//response = (document.querySelector('[name="apple-itunes-app"]').getAttribute("content") || "").match(/aid=\d{2,}/);
+				var mydata = (response.match(new RegExp('name="apple-itunes-app"'+'(.*?)'+'>'))[1]).match(/aid=(\d+)/);
+				mydata = mydata[0].split('=')[1];
+				//var mydata = response.match(new RegExp('albumid'+'(.*?)'+'";'))[1];
+				//mydata = mydata.split('"')[1];
+				TvInfo.innerHTML = "解析albumid:"+mydata;
 				if(mydata > 1){//https://pcw-api.iqiyi.com/albums/album/avlistinfo?aid=202328401&page=1&size=30
 				TvJSON={};
 				$.get('https://pcw-api.iqiyi.com/albums/album/avlistinfo?aid='+mydata+'&page=1&size=9999',function (res) {
