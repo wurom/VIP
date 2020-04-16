@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+			<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+			<title>正则表达式在线测试|正则表达式测试工具 </title>
+			<meta name="keywords" content="在线正则表达式测试,正则表达式测试工具" />
+			<meta name="description" content="在线正则表达式工具主要针对程序开发人员，通过该工具可以快速准备的判断所写的正则是否能正确匹配相应的字符。">
+				<link rel="stylesheet" href="../images/styles.css">
+					<script type="text/javascript" src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+			
+<style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+        .x{
+            display: inline-block;
+            margin-top: 200px;
+            margin-left: 300px;
+            position: relative;
+        }
+        .k{
+            width: 536px;
+            height: 38px;
+            border: 1px solid #cccccc;
+            float: left;
+            box-sizing: border-box;
+        }
+        .n{
+            width: 102px;
+            height: 38px;
+            line-height: 40px;
+            float: left;
+            background-color: #38f;
+            font-size: 16px;
+            /*鼠标悬停按钮上方，光标成手指样式*/
+            cursor: pointer;
+        }
+        .t{
+            z-index: 1;
+            position: absolute;
+            right: 113px;
+            top: 50%;
+            margin-top: -8px;
+            height: 16px;
+            width: 18px;
+            background: url("images/bd.png");
+            cursor: pointer;
+        }
+ .text_search{ width:100px; height:30px; border:2px solid #90C; outline:none; font-size: 16px; margin: 10px 0px 15px 0px; text-align:center;}
+ .btn_search{ background:#90C; width:70px; height:36px; color:white; border:none; outline:none; font-size: 16px; margin: 10px 0px 15px 0px; text-align:center; -webkit-appearance : none ; }       
+      
+</style>
+			</head>
+			<body>	
+<span class="x">
+<input type="text" class="text_search"><input type="button" value="百度一下" class="btn_search">
+</span>
+
+<span class="x">
+    <input type="text" class="k"><input type="button" value="百度一下" class="n">
+    <span class="t"></span>
+</span>
+
+
+<script type="text/javascript">
+var url = 'http://m.v.qq.com/cover/m/m441e3rjq9kwpsc.html?vid=h0025x3mn7z';
+var url1 = 'http://m.v.qq.com/x/m/play?cid=m441e3rjq9kwpsc&vid=m0025m9timl&ref_pg=page_video_detail';
+var murl = url.match(/cid=(\w+)/);
+if (!murl) {
+	murl = (url.substring(url.lastIndexOf("\/") + 1, url.length)).split('.')[0];
+} else {
+	murl = murl[0].split('=')[1];
+}
+
+murl = 'https://v.qq.com/x/cover/' + murl + '.html';
+
+//var response = ((data.match(new RegExp('name="apple-itunes-app"'+'(.*?)'+'>'))[1]).match(/aid=\d{2,}/)[0]).split('=')[1];
+var my = url.split("h")[1];
+</script>
+																				</body>
+																			</html>  
+    
