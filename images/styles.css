@@ -167,6 +167,7 @@ color:#FF8000;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
+    position: absolute;
 }
 .btn1 {
     background-color: white;
