@@ -154,3 +154,35 @@ color:#FF8000;
   display: inline-block;
   width: 20%;
 }
+
+.mbtn {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.btn1 {
+    background-color: white;
+    color: black;
+    border: 1px solid #555555;
+}
+.btn1:hover {
+    background-color: #555555;
+    color: white;
+}
+.btn2 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+}
+.btn2:hover {
+    background-color: #008CBA;
+    color: white;
+}
