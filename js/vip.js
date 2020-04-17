@@ -159,10 +159,11 @@ function GetAll() {
 
 		TvInfo.innerHTML = "腾讯剧集解析中...";//https://v.qq.com/x/cover/dxd1v76tmu0wjuj.html
 		TvJSON={};
-		if(url.search("m.v.qq.com") != -1){
+		var murl=null;
+                if(url.search("m.v.qq.com") != -1){
 		//http://m.v.qq.com/cover/m/m441e3rjq9kwpsc.html?vid=h0025x3mn7z
 		//http://m.v.qq.com/x/m/play?cid=m441e3rjq9kwpsc&vid=m0025m9timl&ref_pg=page_video_detail
-	   var murl = url.match(/cid=(\w+)/);
+	   murl = url.match(/cid=(\w+)/);
 	   if(!murl)
 	      murl =  (url.substring(url.lastIndexOf("\/")+1,url.length)).split('.')[0];
 	   else
@@ -187,6 +188,8 @@ function GetAll() {
 			TvJSON.data = new Array(TvJSON.len);
 			if(TvJSON.len > 1){
 				var codehead = url.substring(0, url.lastIndexOf("/")+1);
+if(murl)
+codehead = url.substring(0, url.lastIndexOf("."))+'/';
 
 				for (var zz=0;zz < TvJSON.len ;zz++)
 				{
