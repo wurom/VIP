@@ -247,7 +247,7 @@
 	transition: opacity .3s;
 }
 
-input,button,textarea {
+.searchbox-exp input,button,textarea {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	border: 0;
