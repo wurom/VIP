@@ -6,6 +6,7 @@
     <title>乌鲁木-vip免费看</title>
     <link rel="shortcut icon" href="./images/favicon.ico">
     <link rel="stylesheet" href="./images/styles.css">
+    <link rel="stylesheet" href="./js/search.css">
     <meta name="viewport" content="width=device-width">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -23,11 +24,23 @@
   <section>
 
  <div class="entry clearfix">
-			<div style="position:relative;">
-			<textarea id="url" rows="2" style="width:75%" placeholder="请输入播放网址" onclick="this.focus();this.select()" onchange="NoCheck()"></textarea>
-			<button type="button" onclick="GetAll()" class="mbtn btn1">剧集解析</button>
-			</div>
-      <div><form  id="see" class="vip" onchange="SeeMe()" method="get"></form></div>
+ 
+<div id="index-card">
+<div id="header" class="searchbox-exp has-background-bubble">
+<div id="userinfo-wrap" class="has-background-userinfo-bubble">
+
+<div id="index-form">
+<div class="con-wrap">
+<input type="search" id="url" class="se-input adjust-input" placeholder="请输入播放网址" onchange="NoCheck()">
+<div class="se-inner"><button id="index-bn" onclick="GetAll()" type="button">剧集解析</button></div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+			
+      <div style="padding-top:10px;"><form  id="see" class="vip" onchange="SeeMe()" method="get"></form></div>
 </div>
  
 			<div class="entry clearfix">
