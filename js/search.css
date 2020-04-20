@@ -1,0 +1,257 @@
+
+#index-form {
+	height: 44px;
+	margin: 0 16px;
+	border: 1px solid #d2d2d2;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	background: #fff;
+	-webkit-box-shadow: 0 2px 0 0 rgba(0,0,0,.03);
+	box-shadow: 0 2px 0 0 rgba(0,0,0,.03)
+}
+#index-form .con-wrap {
+	display: -moz-box;
+	display: -webkit-box;
+	display: box;
+	width: 100%
+}
+.has-background .searchbox-exp #index-form {
+	height: 44px;
+	border: 0;
+	border: 1px solid #ddd;
+	-webkit-box-shadow: 0 1px 1px 2px rgba(51,51,51,.1);
+	box-shadow: 0 1px 1px 2px rgba(51,51,51,.1)
+}
+.searchbox-exp #index-form {
+	height: 44px;
+	margin: 0 0px;
+	border: 1px solid #363636;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	background: #fff;
+	-webkit-box-shadow: initial;
+	box-shadow: initial
+}
+.has-background .searchbox-exp #index-form {
+	border: 1px solid rgba(54,54,54,.2)
+}
+
+#index-card .his-wrap-new .history-clear {
+	height: 42px;
+	font-size: 14px;
+	line-height: 42px;
+	color: #555;
+	width: 100%;
+	padding: 0;
+	text-align: center
+}
+.searchbox-exp.is-qq .his-wrap-new #index-form #index-bn {
+	color: #fff;
+	background-color: #38f;
+	height: 46px;
+	top: -1px;
+	right: -1px
+}
+.searchbox-exp.is-qq .his-wrap-new #index-form #index-bn: before {
+	display: none
+}
+
+#url.animate {
+	-webkit-animation: ChangeColor 300ms linear
+}
+
+#url: : -webkit-input-placeholder {
+	font-size: 17px;
+	color: #ccc
+}
+#index-card .se-input: : -webkit-search-cancel-button {
+	display: none;
+	-webkit-appearance: none
+}
+#index-card .se-input,#index-card .se-encode {
+	display: block;
+	margin: 2px 0;
+	padding: 6px 35px 6px 6px;
+	font-size: 18px;
+	line-height: 24px;
+	-webkit-appearance: none;
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	box-flex: 1;
+	-webkit-tap-highlight-color: rgba(0,0,0,0)
+}
+#index-card .se-input {
+	overflow: hidden;
+	height: 44px;
+	margin: 0;
+	padding: 7px 42px 7px 6px;
+	font-family: Arial,Helvetica,sans-serif;
+	line-height: 28px;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	resize: none
+}
+.has-background #index-card .se-input {
+	height: 44px;
+	padding-top: 8px;
+	padding-bottom: 8px
+}
+#index-card .se-input {
+	height: 44px
+}
+#index-card .se-input: focus {
+	outline: 0
+}
+
+#index-card .se-inner {
+	position: relative;
+	width: 82px
+}
+#index-card .searchbox-exp .se-inner {
+	width: 81px
+}
+
+.searchbox-exp #index-bn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	box-sizing: inherit;
+	width: 60px;
+	height: 44px;
+	padding: 0 10px;
+	border: 0;
+	border-left: 1px solid #e8e8e8;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 46px;
+	white-space: nowrap;
+	letter-spacing: -1px;
+	color: #555555;
+	border-top-right-radius: initial;
+	-webkit-border-top-right-radius: initial;
+	border-bottom-right-radius: initial;
+	-webkit-border-bottom-right-radius: initial;
+	background: #fff;
+	text-shadow: none;
+	-webkit-user-select: none;
+	user-select: none
+}
+.searchbox-exp #index-bn.qm-activity {
+	color: #333
+}
+.searchbox-exp #index-bn: active {
+	background-color: #e8e8e8
+}
+.searchbox-exp #index-bn:hover {
+    background-color: #555555;
+    color: white;
+}
+.searchbox-exp.is-qq #index-bn {
+	top: -1px;
+	right: -1px;
+	height: 46px;
+	border-left: 1px solid #38f;
+	font-weight: 400;
+	color: #fff;
+	background: #38f
+}
+.searchbox-exp.is-qq #index-bn.qm-activity {
+	background: #363636;
+	border-left: #363636
+}
+#index-card .se-form-def-hot #index-bn {
+	display: none;
+}
+
+.has-background #index-card {
+	position: relative;
+	z-index: 0
+}
+.has-background #index-card .skin-link {
+	position: absolute;
+	top: 50px;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: 82px;
+	cursor: pointer
+}
+.has-background #page,.has-background #index-card {
+	height: auto
+}
+#header {
+	background-color: #fff;
+}
+.has-background #header {
+	background: none;
+}
+#userinfo-wrap {
+	position: relative;
+	height: 35px;
+	margin-bottom: 9px
+}
+
+.has-background-bubble .has-background-userinfo-bubble .index-banner {
+	position: absolute;
+	height: 21px;
+	line-height: 21px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	background: none;
+	border: 1px solid #d8d8d8;
+	right: 56px!important;
+	top: 12px!important;
+	opacity: 0;
+	z-index: 10;
+	-webkit-transition: opacity .3s;
+	-moz-transition: opacity .3s;
+	-o-transition: opacity .3s;
+	transition: opacity .3s;
+}
+.has-background-bubble .has-background-userinfo-bubble #userinfo-wraps {
+	position: relative;
+	top: 0;
+	right: 0;
+	width: auto;
+	height: auto;
+}
+.has-background-bubble .has-background-userinfo-bubble .square-banner-bgicon {
+	border: none;
+	padding-right: 16px;
+	right: 36px !important;
+}
+.has-background-bubble .has-background-userinfo-bubble .square-banner-bgicon img {
+	height: 23px;
+	padding: 0;
+}
+.has-background-bubble .has-background-userinfo-bubble .square-banner-bgicon .square-banner-text {
+	display: none;
+}
+.has-background-bubble .has-background-userinfo-bubble .index-banner {
+	position: absolute;
+	height: 21px;
+	line-height: 21px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	background: none;
+	border: 1px solid #d8d8d8;
+	right: 56px!important;
+	top: 12px!important;
+	opacity: 0;
+	z-index: 10;
+	-webkit-transition: opacity .3s;
+	-moz-transition: opacity .3s;
+	-o-transition: opacity .3s;
+	transition: opacity .3s;
+}
+
+input,button,textarea {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	-webkit-appearance: none
+}
