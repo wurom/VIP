@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<title>正则表达式在线测试|正则表达式测试工具</title>
+		<meta name="keywords" content="在线正则表达式测试,正则表达式测试工具" />
+		<meta name="description" content="在线正则表达式工具主要针对程序开发人员，通过该工具可以快速准备的判断所写的正则是否能正确匹配相应的字符。">
+    <link rel="stylesheet" href="../images/styles.css">
+    <script type="text/javascript" src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<style>
+	section textarea {
+		width: 100%;
+		height: 100px;
+	}
+	section textarea,
+	section input[type='text'] {
+		border: 1px solid #ccc;
+	}
+	.lh30{ line-height:30px;}
+	.fb{ font-weight:bold;}
+	.pl20{ padding-left:20px !important;}
+	.plr20{ padding-left:20px; padding-right:20px;}
+	.fl{float: left; display:inline-block;}
+	.col-gray03{ color:#56688a}
+	td, th {
+            border: 1px solid #C0C0C0;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+ #regexUl label{
+  display: inline-block;
+  width: 30%;
+}
+       
+</style>
+	</head>
+  <body>
+    <div class="wrapper">
+
+      <header>
+        <p><a href="#"><h2>乌鲁木 우룸</h2></a></p>
+
+        <ul>
+          <li><a href="index.html">默认页</a></li>
+          <li><a href="code.html">在线查看网页源码</a></li>
+	        <li><a href="regex.html">正规表达式</a></li>
+          <li><a href="color.html">RGB颜色对照表</a></li>
+        </ul>
+        <p></p><p></p>
+      </header>
+
+  <section>  
+	<div class="entry clearfix">
+				<h2>在线正则表达式</h1>
+				<div>该工具主要针对程序开发人员，通过该工具可以快速准备的判断所写的正则是否能正确匹配相应的字符。</div>
+	</div>
+	
+	<div class="entry clearfix">
+		<!--内容块开始-->
+				<textarea id="textSour" placeholder="在此输入待匹配文本"></textarea>
+			</div>
+			
+			<div class="entry clearfix">
+				<form class="well form-inline">
+						<input type="text" style="height: 25px;width:60%;" id="textPattern" placeholder="在此输入正则表达式">
+             <button type="button" onclick="return onMatch();">测试</button>
+ 					   <input type="checkbox" value="global" checked="checked" id="optionGlobal" name="optionGlobl">全局搜索
+					   <input type="checkbox" value="ignoreCase" id="optionIgnoreCase" name="optionIgnoreCase">忽略大小写            
+						<div class="input-group-btn" id="regexUl">
+							
+								<label><a href="javascript:;" title="[\u4e00-\u9fa5]">匹配中文字符</a>
+								</label>
+								<label><a href="javascript:;" title="[^\x00-\xff]">匹配双字节字符(含汉字)</a>
+								</label>
+								<label><a href="javascript:;" title="\n\s*\r">匹配空白行</a>
+								</label>
+								<label><a href="javascript:;" title="[\w!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[\w!#$%&amp;'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?">匹配Email地址</a>
+								</label>
+								<label><a href="javascript:;" title="[a-zA-z]+://[^\s]*">匹配网址URL</a>
+								</label>
+								<label><a href="javascript:;" title="\d{3}-\d{8}|\d{4}-\{7,8}">匹配国内电话号码</a>
+								</label>
+								<label><a href="javascript:;" title="[1-9][0-9]{4,}">匹配腾讯QQ号</a>
+								</label>
+								<label><a href="javascript:;" title="[1-9]\d{5}(?!\d)">匹配中国邮政编码</a>
+								</label>
+								<label><a href="javascript:;" title="^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$">匹配18位身份证号</a>
+								</label>
+								<label><a href="javascript:;" title="([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8])))">匹配(年-月-日)格式日期</a>
+								</label>
+								<label><a href="javascript:;" title="^[1-9]\d*$">匹配正整数</a>
+								</label>
+								<label><a href="javascript:;" title="^-[1-9]\d*$">匹配负整数</a>
+								</label>
+								<label><a href="javascript:;" title="^-?[1-9]\d*$">匹配整数</a>
+								</label>
+								<label><a href="javascript:;" title="^[1-9]\d*|0$">匹配非负整数(正整数+0)</a>
+								</label>
+								<label><a href="javascript:;" title="^-[1-9]\d*|0$">匹配非正整数(负整数+0)</a>
+								</label>
+								<label><a href="javascript:;" title="^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$">匹配正浮点数</a>
+								</label>
+								<label><a href="javascript:;" title="^-[1-9]\d*\.\d*|-0\.\d*[1-9]\d*$">匹配负浮点数</a>
+								</label>
+								<label><a href="javascript:;" title="(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)">匹配IP地址</a>
+								</label>
+						</div>
+
+				</form>
+			</div>
+			
+			<div class="entry clearfix">
+				<textarea readonly="readonly" placeholder="匹配结果" id="textMatchResult"></textarea>
+			</div>
+		
+		
+		
+		
+		<div class="entry clearfix">
+            <div class="lh30 plr20"><b class="fb col-gray03">到底什么是正则表达式？</b></div>
+            <div class="lh30 plr20">在编写处理字符串的程序或网页时，经常有查找符合某些复杂规则的字符串的需要。正则表达式就是用于描述这些规则的工具。换句话说，正则表达式就是记录文本规则的代码。</div>
+            <div class="clearfix ptb10"><div class="fl pl20 pr20"><div class="lh30"><b class="fb col-gray03">常用元字符</b></div>
+            <table cellspacing="0"><thead><tr><th scope="col">代码</th><th scope="col">说明</th></tr></thead><tbody><tr><td><span class="code">.</span></td><td><span class="desc">匹配除换行符以外的任意字符</span></td></tr><tr><td><span class="code">\w</span></td><td><span class="desc">匹配字母或数字或下划线</span></td></tr><tr><td><span class="code">\s</span></td><td><span class="desc">匹配任意的空白符</span></td></tr><tr><td><span class="code">\d</span></td><td><span class="desc">匹配数字</span></td></tr><tr><td><span class="code">\b</span></td><td><span class="desc">匹配单词的开始或结束</span></td></tr><tr><td><span class="code">^</span></td><td><span class="desc">匹配字符串的开始</span></td></tr><tr><td><span class="code">$</span></td><td><span class="desc">匹配字符串的结束</span></td></tr></tbody></table></div><div class="fl pl20 pr20"><div class="lh30"><b class="fb col-gray03">常用限定符</b></div><table cellspacing="0"><thead><tr><th scope="col">代码/语法</th><th scope="col">说明</th></tr></thead><tbody><tr><td><span class="code">*</span></td><td><span class="desc">重复零次或更多次</span></td></tr><tr><td><span class="code">+</span></td><td><span class="desc">重复一次或更多次</span></td></tr><tr><td><span class="code">?</span></td><td><span class="desc">重复零次或一次</span></td></tr><tr><td><span class="code">{n}</span></td><td><span class="desc">重复n次</span></td></tr><tr><td><span class="code">{n,}</span></td><td><span class="desc">重复n次或更多次</span></td></tr><tr><td><span class="code">{n,m}</span></td><td><span class="desc">重复n到m次</span></td></tr></tbody></table></div>
+            <div class="fl pl20"><div class="lh30"><b class="fb col-gray03">常用反义词</b></div><table cellspacing="0"><thead><tr><th scope="col">代码/语法</th><th scope="col">说明</th></tr></thead><tbody><tr><td><span class="code">\W</span></td><td><span class="desc">匹配任意不是字母，数字，下划线，汉字的字符</span></td></tr><tr><td><span class="code">\S</span></td><td><span class="desc">匹配任意不是空白符的字符</span></td></tr><tr><td><span class="code">\D</span></td><td><span class="desc">匹配任意非数字的字符</span></td></tr><tr><td><span class="code">\B</span></td><td><span class="desc">匹配不是单词开头或结束的位置</span></td></tr><tr><td><span class="code">[^x]</span></td><td><span class="desc">匹配除了x以外的任意字符</span></td></tr><tr><td><span class="code">[^aeiou]</span></td><td><span class="desc">匹配除了aeiou这几个字母以外的任意字符</span></td></tr></tbody></table>
+            </div>
+            </div>
+      </div>
+
+<script language="javascript">
+$(document).ready(function (){
+	$("#regexUl  a").click(function (){
+		$("#textPattern").val($(this).attr("title"));
+		onMatch();
+	});
+	});
+
+function setVisible(idElement, visible) {
+	var obj = document.getElementById(idElement);
+	obj.style.visibility = visible ? "visible" : "hidden";
+}
+function isValidFields() {
+	var textSour = document.getElementById("textSour");
+	if (null==textSour.value || textSour.value.length<1) {
+		textSour.focus();
+		document.getElementById("textMatchResult").value = "请输入待匹配文本";
+		return false;
+	}
+	var textPattern = document.getElementById("textPattern");
+	if (null==textPattern.value || textPattern.value.length<1) {
+		textPattern.focus();
+		document.getElementById("textMatchResult").value = "请输入正则表达式";
+		return false;
+	}
+	return true;
+}
+function buildRegex() {
+	var op = "";
+	if (document.getElementById("optionGlobal").checked)op = "g";
+	if (document.getElementById("optionIgnoreCase").checked)op = op + "i";
+	return new RegExp(document.getElementById("textPattern").value, op);
+}
+function onMatch() {
+	if (!isValidFields())
+	return false;
+	document.getElementById("textMatchResult").value = "";
+	var regex = buildRegex();
+	var result = document.getElementById("textSour").value.match(regex);
+	if (null==result || 0==result.length) {
+		document.getElementById("textMatchResult").value = "（没有匹配）";
+		return false;
+	}
+	if (document.getElementById("optionGlobal").checked) {
+		var strResult = "共找到 " + result.length + " 处匹配：\r\n";
+		for (var i=0;i < result.length;++i)strResult = strResult + result[i] + "\r\n";
+		document.getElementById("textMatchResult").value = strResult;
+	}
+	else {
+		document.getElementById("textMatchResult").value= "匹配位置：" + regex.lastIndex + "\r\n匹配结果：" + result[0];
+	}
+	return true;
+}
+function onReplace() {
+	var str = document.getElementById("textSour").value;
+	var regex = buildRegex();
+	document.getElementById("textReplaceResult").value= str.replace(regex, document.getElementById("textReplace").value);
+}
+function reset()
+{
+	$("#textSour").val("");
+	$("#textPattern").val("");
+	$("#textMatchResult").val("");
+	$("#textReplace").val("");
+	$("#textReplaceResult").val("");
+}
+
+	function Empty() {
+		document.getElementById('searchText').value = '';
+		document.getElementById('inputText').value = '';
+		document.getElementById('searchText').select();
+	}
+
+	function GetFocus() {
+		document.getElementById('content').focus();
+	}
+</script>
+<div>© Copyright 2020 by <a href="https://www.wuroom.com/" target="_blank">Joe</a></div>
+</section> 
+</div>
+
+</body>
+</html>

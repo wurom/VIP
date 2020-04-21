@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>乌鲁木-网页源码查看</title>
+    <title>乌鲁木-RGB颜色对照表</title>
     <link rel="shortcut icon" href="../images/favicon.ico">
     <link rel="stylesheet" href="../images/styles.css">
     <link rel="stylesheet" href="../js/search.css">
@@ -11,11 +11,20 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-     <meta name="keywords" content="源代码查看,如何查看网页源代码,查看网页源代码工具" />
-     <meta name="description" content="通过模拟蜘蛛来查看网页源代码，可以查出页面蜘蛛访问是否正常。" /> 
+    <meta name="keywords" content="rgb,三原色,rgb颜色查询对照表,rgb转16进制,rgb接口,rgb转换,rgb颜色查询,rgb是什么意思,rgb键盘,金色rgb"/>
+    <meta name="description" content="rgb,三原色,rgb颜色查询对照表,rgb转16进制,rgb接口,rgb转换,rgb颜色查询,rgb是什么意思,rgb键盘,金色rgb">
     <script>//<script data-ad-client="ca-pub-5414095334113187" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "https://hm.baidu.com/hm.js?8746c66dcb138cc274daaa63111382a9";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script>
+<script type="text/javascript" src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src='../js/farbtastic.js'></script>
+<link rel="stylesheet" href="../js/farbtastic.css">
 
+ <script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('#picker').farbtastic('#color');
+  });
+ </script>
+ 
   </head>
   <body>
     <div class="wrapper">
@@ -33,33 +42,21 @@
       
 <section>
 
+<div class="entry clearfix">RGB颜色对照表</div>
+
 <div class="entry clearfix">
-<div id="index-card">
-<div id="header" class="searchbox-exp has-background-bubble">
-<div id="userinfo-wrap" class="has-background-userinfo-bubble">
-
-<div  id="index-form">
-<div class="con-wrap">
-<input type="search" id="url" class="se-input" placeholder="请输入网址">
-<div class="se-inner"><button id="index-bn" onclick="GetCode()" type="button">查 看</button></div>
+<form action="" style="width: 400px;">
+   <div id="picker"></div>
+  <div class="form-item"><input type="text" id="color" name="color" style="border:none;width: 200px;height:50px;text-align: center;" value="#123456"/></div>
+</form>
 </div>
-</div>
-
-</div>
-</div>
-</div>
-</div>
- 
-
-			<div class="entry clearfix" id="code">
-			</div>
 
       <div>© Copyright 2020 by <a href="https://www.wuroom.com/" target="_blank">Joe</a></div>
       </section>     
       <footer> 
       	</footer>
     </div>
-    <script type="text/javascript" src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="../js/vip.js"></script>
+    
+
   </body>
 </html>
