@@ -255,3 +255,8 @@
 	background: transparent;
 	-webkit-appearance: none
 }
+.searchbox-exp input:focus { outline: none; }
+.searchbox-exp button:focus { outline: none; }
+.searchbox-exp button:active{
+  opacity: 0.5;
+}
