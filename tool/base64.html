@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>乌鲁木-Base64加密解密</title>
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="../images/styles.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+        <meta name="keywords" content="Base64加密,Base64解密,Base64加密解密" />
+        <meta name="description" content="Base64在线加密解密" />
+    <script>//<script data-ad-client="ca-pub-5414095334113187" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "https://hm.baidu.com/hm.js?8746c66dcb138cc274daaa63111382a9";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <p><a href="/"><h2>乌鲁木 우룸</h2></a></p>
+
+        <ul>
+          <li><a href="index.html">默认页</a></li>
+          <li><a href="code.html">在线查看网页源码</a></li>
+	        <li><a href="regex.html">正规表达式工具</a></li>
+          <li><a href="color.html">RGB颜色对照表</a></li>
+          <li><a href="base64.html">Base64加密解密</a></li>
+        </ul>
+        <p></p><p></p>
+      </header>
+      
+<section>
+
+<div class="entry clearfix">
+<textarea id="content" name="content" rows="8" style="width:100%;"  placeholder="Base64加密内容粘贴在这里"></textarea>
+</div>
+
+<div class="entry clearfix">
+<span><button class="mbtn btn1" onclick="EnMyCode()" type="button">↓ 加密 ↓</button></span>
+<span style="margin-left: 50px;"><button class="mbtn btn2" onclick="DeMyCode()" type="button">↑ 解密 ↑</button></span>
+</div>
+			<div class="entry clearfix">
+			<textarea id="result" name="result" rows="8" style="width:100%;" placeholder="Base64解密内容粘贴在这里"></textarea>
+			</div>
+
+      <div>© Copyright 2020 by <a href="https://www.wuroom.com/" target="_blank">Joe</a></div>
+      </section>     
+
+</div>
+    <script type="text/javascript" src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+//加密、解密算法封装：
+function Base64() {  
+
+    // private property  
+    _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";  
+
+    // public method for encoding  
+    this.encode = function (input) {  
+        var output = "";  
+        var chr1, chr2, chr3, enc1, enc2, enc3, enc4;  
+        var i = 0;  
+        input = _utf8_encode(input);  
+        while (i < input.length) {  
+            chr1 = input.charCodeAt(i++);  
+            chr2 = input.charCodeAt(i++);  
+            chr3 = input.charCodeAt(i++);  
+            enc1 = chr1 >> 2;  
+            enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);  
+            enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);  
+            enc4 = chr3 & 63;  
+            if (isNaN(chr2)) {  
+                enc3 = enc4 = 64;  
+            } else if (isNaN(chr3)) {  
+                enc4 = 64;  
+            }  
+            output = output +  
+            _keyStr.charAt(enc1) + _keyStr.charAt(enc2) +  
+            _keyStr.charAt(enc3) + _keyStr.charAt(enc4);  
+        }  
+        return output;  
+    }  
+
+    // public method for decoding  
+    this.decode = function (input) {  
+        var output = "";  
+        var chr1, chr2, chr3;  
+        var enc1, enc2, enc3, enc4;  
+        var i = 0;  
+        input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");  
+        while (i < input.length) {  
+            enc1 = _keyStr.indexOf(input.charAt(i++));  
+            enc2 = _keyStr.indexOf(input.charAt(i++));  
+            enc3 = _keyStr.indexOf(input.charAt(i++));  
+            enc4 = _keyStr.indexOf(input.charAt(i++));  
+            chr1 = (enc1 << 2) | (enc2 >> 4);  
+            chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);  
+            chr3 = ((enc3 & 3) << 6) | enc4;  
+            output = output + String.fromCharCode(chr1);  
+            if (enc3 != 64) {  
+                output = output + String.fromCharCode(chr2);  
+            }  
+            if (enc4 != 64) {  
+                output = output + String.fromCharCode(chr3);  
+            }  
+        }  
+        output = _utf8_decode(output);  
+        return output;  
+    }  
+
+    // private method for UTF-8 encoding  
+    _utf8_encode = function (string) {  
+        string = string.replace(/\r\n/g,"\n");  
+        var utftext = "";  
+        for (var n = 0; n < string.length; n++) {  
+            var c = string.charCodeAt(n);  
+            if (c < 128) {  
+                utftext += String.fromCharCode(c);  
+            } else if((c > 127) && (c < 2048)) {  
+                utftext += String.fromCharCode((c >> 6) | 192);  
+                utftext += String.fromCharCode((c & 63) | 128);  
+            } else {  
+                utftext += String.fromCharCode((c >> 12) | 224);  
+                utftext += String.fromCharCode(((c >> 6) & 63) | 128);  
+                utftext += String.fromCharCode((c & 63) | 128);  
+            }  
+
+        }  
+        return utftext;  
+    }  
+
+    // private method for UTF-8 decoding  
+    _utf8_decode = function (utftext) {  
+        var string = "";  
+        var i = 0;  
+        var c = c1 = c2 = 0;  
+        while ( i < utftext.length ) {  
+            c = utftext.charCodeAt(i);  
+            if (c < 128) {  
+                string += String.fromCharCode(c);  
+                i++;  
+            } else if((c > 191) && (c < 224)) {  
+                c2 = utftext.charCodeAt(i+1);  
+                string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));  
+                i += 2;  
+            } else {  
+                c2 = utftext.charCodeAt(i+1);  
+                c3 = utftext.charCodeAt(i+2);  
+                string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));  
+                i += 3;  
+            }  
+        }  
+        return string;  
+    }  
+}
+
+var base = new Base64(); 
+var objcon  = document.getElementById("content");
+var objres  = document.getElementById("result");
+//1.加密
+function EnMyCode() {
+if(objcon.value.length > 0)	
+ objres.value = base.encode(objcon.value);
+else
+	objres.value = "内容为空";
+
+}
+
+//2.解密
+function DeMyCode() {
+if(objres.value.length > 0)	
+ objcon.value = base.decode(objres.value);
+else
+	objcon.value = "内容为空";	
+}
+
+
+</script>
+
+</body>
+</html>  
+    
