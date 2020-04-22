@@ -146,7 +146,15 @@
     background-color: #000;
     color: white;
 }
-
+.searchbox-exp.is-qq #index-bn {
+	top: -1px;
+	right: -1px;
+	height: 46px;
+	border-left: 1px solid #38f;
+	font-weight: 400;
+	color: #fff;
+	background: #38f
+}
 .searchbox-exp.is-qq #index-bn.qm-activity {
 	background: #363636;
 	border-left: #363636
