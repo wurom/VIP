@@ -114,24 +114,25 @@
 
 .searchbox-exp #index-bn {
 	position: absolute;
-	top: 0;
-	right: 0;
+	top: 1px;
+	right: 1px;
 	box-sizing: inherit;
-	width: 70px;
+	width: 60px;
 	height: 44px;
+	padding: 0 10px;
 	border: 0;
-	border-left: 1px solid #000;
+	border-left: 1px solid #e8e8e8;
 	font-size: 16px;
 	font-weight: 700;
 	line-height: 46px;
 	white-space: nowrap;
 	letter-spacing: -1px;
-	color: #fff;
+	color: #555555;
 	border-top-right-radius: initial;
 	-webkit-border-top-right-radius: initial;
 	border-bottom-right-radius: initial;
 	-webkit-border-bottom-right-radius: initial;
-	background: #555555;
+	background: #fff;
 	text-shadow: none;
 	-webkit-user-select: none;
 	user-select: none
@@ -140,10 +141,10 @@
 	color: #333
 }
 .searchbox-exp #index-bn: active {
-	background-color: #000
+	background-color: #e8e8e8
 }
 .searchbox-exp #index-bn:hover {
-    background-color: #000;
+    background-color: #555555;
     color: white;
 }
 .searchbox-exp.is-qq #index-bn {
