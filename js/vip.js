@@ -20,8 +20,12 @@ var VIP_INFO =new Array(
 ["598","http://jx.598110.com/?url="],
 ["瀚晶","https://beaacc.com/api.php?url="],
 ["IDC","https://jx.idc126.net/jx/?url="],
-["ZCH","http://api.myzch.cn/?url="]
-	
+["ZCH","http://api.myzch.cn/?url="],
+["1907","https://z1.m1907.cn/?jx="],
+["HA12","http://py.ha12.xyz/sos/index.php?url="],
+["17云","https://www.1717yun.com/jx/ty.php?url="],
+["大享","http://jx.oopw.top/?url="]
+
 );
 
 var see = document.getElementById("see");
@@ -159,8 +163,8 @@ function GetAll() {
 
 		TvInfo.innerHTML = "腾讯剧集解析中...";//https://v.qq.com/x/cover/dxd1v76tmu0wjuj.html
 		TvJSON={};
-		var murl=null;
-                if(url.search("m.v.qq.com") != -1){
+		var murl =null;
+		if(url.search("m.v.qq.com") != -1){
 		//http://m.v.qq.com/cover/m/m441e3rjq9kwpsc.html?vid=h0025x3mn7z
 		//http://m.v.qq.com/x/m/play?cid=m441e3rjq9kwpsc&vid=m0025m9timl&ref_pg=page_video_detail
 	   murl = url.match(/cid=(\w+)/);
@@ -188,8 +192,8 @@ function GetAll() {
 			TvJSON.data = new Array(TvJSON.len);
 			if(TvJSON.len > 1){
 				var codehead = url.substring(0, url.lastIndexOf("/")+1);
-if(murl)
-codehead = url.substring(0, url.lastIndexOf("."))+'/';
+				if(murl)
+					codehead = url.substring(0, url.lastIndexOf("."))+"/";
 
 				for (var zz=0;zz < TvJSON.len ;zz++)
 				{
