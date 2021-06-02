@@ -13,12 +13,12 @@ var VIP_INFO = new Array(
 ["180","https://jx.000180.top/jx/?url="],
 ["58","https://jx.km58.top/jx/?url="],
 ["云","https://jx.ergan.top/?url="],
-["ZCH","http://api.myzch.cn/?url="],
+["大白","https://api.myzch.cn/?url="],
 ["1907","https://z1.m1907.cn/?jx="],
 ["HA12","http://py.ha12.xyz/sos/index.php?url="],
 ["17云","https://www.1717yun.com/jx/ty.php?url="],
 ["17","https://17kyun.com/api.php?url="],
-["YP","http://jx.yparse.com/index.php?url="]
+["YP","https://jx.yparse.com/index.php?url="]
 );
 
 if(see){
