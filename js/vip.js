@@ -104,7 +104,7 @@ function SeeMe() {
         var test = document.getElementById("test");
         test.style.display = 'block';
         document.getElementById("test_colse").style.display = 'block';
-        test.innerHTML = '<iframe name="tvif" height=400 width=100%  src="' + VIP_INFO[rid][1] + '"> </iframe>';
+        test.innerHTML = '<iframe name="tvif" height=400 width=100% security="restricted" sandbox="" src="' + VIP_INFO[rid][1] + '"> </iframe>';
         return;
     }
 
