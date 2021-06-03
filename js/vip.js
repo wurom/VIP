@@ -2,9 +2,12 @@ var rid = 0;
 var TvInfo = document.getElementById("play");
 var TvJSON = {};
 
-document.write('<script language=javascript src="./js/zurl.js"></script>');
 var see = document.getElementById("see");
-
+if(see){
+	for (var z=0;z < VIP_INFO.length ;z++){
+		see.innerHTML += '<label><input name="seer" type="radio"/>'+VIP_INFO[z][0]+'</label>';
+	}
+}
 
 function CloseWUInfo(id1) {
 document.getElementById(id1).style.display='none';
@@ -77,7 +80,7 @@ function HotJSON(id,pid) {
       });
       
 }
-document.write('<script language=javascript src="./js/me.js"></script>');
+
 function MeJSON() {
     var test = document.getElementById("test");
     test.style.display = 'block';

@@ -20,9 +20,3 @@ var VIP_INFO = new Array(
 ["17","https://17kyun.com/api.php?url="],
 ["YP","https://jx.yparse.com/index.php?url="]
 );
-
-if(see){
-	for (var z=0;z < VIP_INFO.length ;z++){
-		see.innerHTML += '<label><input name="seer" type="radio"/>'+VIP_INFO[z][0]+'</label>';
-	}
-}
