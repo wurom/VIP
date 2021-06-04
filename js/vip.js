@@ -1,6 +1,6 @@
 var rid = 0;
 var TvInfo = document.getElementById("play");
-var TvJSON = {};
+var TvJSON;
 
 var see = document.getElementById("see");
 if(see){
@@ -42,43 +42,56 @@ function GetCode() {
         tvobj.innerHTML = '请输入正确网址';
     }
 }
-function TPlist() {
+function TPlist(ty) {
     var type = document.getElementById("type");
     type.style.display = 'block';  
     document.getElementById("type_colse").style.display = 'block';
     type.innerHTML = ""; //清空内容
     var list = new Array("电影","电视剧","纪录片","动漫","综艺");
+    var tynum = [[0,1,2,3],[0,1,2,3],[3,2,105,50,1],[1,2,3,4,5]];
+    
     for (var zz = 0; zz < list.length; zz++) {
-    type.innerHTML += '<label><a href="javascript:HotJSON('+(zz+1)+',1);">' + list[zz] + '</a></label>';
+    type.innerHTML += '<label><a href="javascript:HotJSON('+ty+','+tynum[ty][zz]+',1);">' + list[zz] + '</a></label>';
     //jsurl = 'https://pcw-api.iqiyi.com/search/recommend/list?channel_id=1&data_type=1&mode=11&page_id=1&ret_num=50';
      }
 }
-function HotJSON(id,pid) {
+function HotJSON(ty,id,pid) {
     var test = document.getElementById("test");
     test.style.display = 'block';
     document.getElementById("test_colse").style.display = 'block';
     //test.className = 'vip';    
     test.innerHTML = ""; //清空内容
-
-    var jsurl = 'https://pcw-api.iqiyi.com/search/recommend/list?channel_id='+id+'&data_type=1&mode=1&page_id='+pid+'&ret_num=50';
+    var tt = randomn(13);
+    var hotlist = [
+    {"name":"","jsurl":''},
+    {"name":"","jsurl":""},
+    {"name":"name","title":"info","playurl":"play_url","aid":"videoId","jsurl":'https://rc.mgtv.com/pc/ranklist?&c='+id+'&t=all&limit=50&rt=c&t='+tt+'&_support=10000000&_='+tt},
+    {"name":"name","title":"period","playurl":"playUrl","aid":"albumId","jsurl":'https://pcw-api.iqiyi.com/search/recommend/list?channel_id='+id+'&data_type=1&mode=1&page_id='+pid+'&ret_num=50'}
+    ];    
     
-    TPlist();
+    //var jsurl = 'https://pcw-api.iqiyi.com/search/recommend/list?channel_id='+id+'&data_type=1&mode=1&page_id='+pid+'&ret_num=50';
+        
+    TPlist(ty);
 
-    $.ajax({url:jsurl,type:"GET",dataType:"jsonp",success:function (result){      
+    $.ajax({url:hotlist[ty].jsurl,type:"GET",dataType:"jsonp",success:function (result){      
+
+     var redata = [result.data,result.data,result.data,result.data.list];
   
-          $.each(result.data.list,function(infoIndex,info){
-           test.innerHTML += '<label><a href="javascript:document.getElementById(\'url\').value=\'' + info["playUrl"] + '\';GetAll(\''+info["albumId"]+'\');" title="' + info["period"] + '">' + info["name"] + '</a></label>';
+          $.each(redata[ty],function(infoIndex,info){
+           test.innerHTML += '<label><a href="javascript:document.getElementById(\'url\').value=\'' + info[hotlist[ty].playurl] + '\';GetAll(\''+info[hotlist[ty].aid]+'\');" title="' + info[hotlist[ty].title] + '">' + info[hotlist[ty].name] + '</a></label>';
           });
+          
+          if(ty==3){
         test.innerHTML += '<p></p>';
       for (var zz = 1; zz < 11; zz++) { 
-         test.innerHTML += '<span class="pages"><a href="javascript:HotJSON('+id+','+zz+');">'+ zz +'</a></span>';
+         test.innerHTML += '<span class="pages"><a href="javascript:HotJSON('+ty+','+id+','+zz+');">'+ zz +'</a></span>';
+       }
        }
      },
      error:function(callback) {
       console.log("fail="+callback);
        }
-      });
-      
+      });     
 }
 
 function MeJSON() {
@@ -116,7 +129,7 @@ function SeeMe() {
         for (var zz = 0; zz < TvJSON.len; zz++) {
             if (TvJSON.data[zz].mask == 1 || TvJSON.data[zz].mask == 7)
             TvInfo.innerHTML += '<span class="mask"><a target="_blank" href="' + VIP_INFO[rid][1] + TvJSON.data[zz].url + '">' + (zz + 1) + '</a></span>';
-            else if (TvJSON.data[zz].mask != 4)
+            else
             TvInfo.innerHTML += '<span class="nomask"><a target="_blank" href="' + VIP_INFO[rid][1] + TvJSON.data[zz].url + '">' + (zz + 1) + '</a></span>';
         }
     } else TvInfo.innerHTML = '<a target="_blank" href="' + VIP_INFO[rid][1] + TvJSON.data[0].url + '">点我播放</a>';
@@ -150,11 +163,6 @@ function randomn(n) {
     return res.substr(0, n)
 }
 
-//奇门遁甲 https://v.qq.com/x/cover/mzc00200a7ghbkc.html
-//斗罗7 https://v.qq.com/x/cover/m441e3rjq9kwpsc/l0025jj5k4c.html
-//斗罗2 http://m.v.qq.com/cover/m/m441e3rjq9kwpsc.html?vid=h0025x3mn7z
-//斗罗4 http://m.v.qq.com/x/m/play?cid=m441e3rjq9kwpsc&vid=m0025m9timl&ref_pg=page_video_detail
-//清平乐 https://v.qq.com/x/cover/dxd1v76tmu0wjuj.html
 //剧集
 function GetAll(aid) {
     var inputurl = document.getElementById("url").value;
@@ -186,7 +194,8 @@ function GetAll(aid) {
             url: jsonurl,
             type: "GET",
             dataType: "jsonp",
-            success: function(result) {      TvJSON.title = result.playlist[0].videoPlayList[0].title;
+            success: function(result) {
+            	TvJSON.title = result.playlist[0].videoPlayList[0].title;
                 TvJSON.len = result.playlist[0].videoPlayList.length;
                 TvJSON.data = new Array(TvJSON.len);
                 if (TvJSON.len > 0) {
@@ -194,7 +203,8 @@ function GetAll(aid) {
                     for (var zz = 0; zz < TvJSON.len; zz++) {
                         TvJSON.data[zz] = {};
                         TvJSON.data[zz].mask = result.playlist[0].videoPlayList[zz].payType;
-                        TvJSON.data[zz].url = result.playlist[0].videoPlayList[zz].playUrl;
+                        TvJSON.data[zz].url  = result.playlist[0].videoPlayList[zz].playUrl;
+                        TvJSON.data[zz].type = result.playlist[0].videoPlayList[zz].type;
                     }
                     TvJSON.ok = 1;
                     SeeMe();
@@ -209,8 +219,6 @@ function GetAll(aid) {
             }
         });
     }
-    //庆余年2 http://www.iqiyi.com/v_19ruzj8izo.html
-    //月光变奏曲 https://www.iqiyi.com/v_2f1pqm3y53c.html?vfrm=pcw_playpage&vfrmblk=K&vfrmrst=80521_list_title1
     else if(inputurl.search("iqiyi.com") != -1) {
         TvInfo.innerHTML = "爱奇艺剧集解析中...";
         TvJSON = {};
@@ -243,7 +251,61 @@ function GetAll(aid) {
                 console.log("fail=" + callback);
             }
         });
-
     }
+    else if(inputurl.search("mgtv.com") != -1) {
+        TvInfo.innerHTML = "剧集解析中...";
+        TvJSON = {};
+        var jsonurl = 'https://pcweb.api.mgtv.com/episode/list?_support=10000000&version=5.5.35&video_id='+aid+'&page=1&size=50';//最大50,其它在page=0
+        //https://pcweb.api.mgtv.com/episode/list?_support=10000000&version=5.5.35&video_id=[视频ID]&page=0&size=[每页数据数]&&callback=
 
+        $.ajax({url: jsonurl,type: "GET",dataType: "jsonp",success: function(result) {
+        	if (result.errMsg||!result.data.list.length){
+        		TvJSON.data = new Array(1);
+        		TvJSON.data[0] = {};
+        		TvJSON.data[0].url = inputurl;
+          }else{
+          
+          TvJSON.ok = 1;
+        	TvJSON.title = result.data.info.title;
+          TvJSON.len   = result.data.total;
+          TvJSON.data  = new Array(TvJSON.len);
+          var n = 0;
+         for (var zz = 0; zz < result.data.list.length; zz++) {
+         	if(result.data.list[zz].isIntact!=3){
+                        TvJSON.data[n] = {};
+                        TvJSON.data[n].mask = result.data.list[zz].isvip;
+                        TvJSON.data[n].url = 'https://www.mgtv.com'+result.data.list[zz].url; 
+                        n++
+                 }
+         }
+          if(TvJSON.len < 51)
+             SeeMe(); 
+          else
+          {
+            $.ajax({url: 'https://pcweb.api.mgtv.com/episode/list?_support=10000000&version=5.5.35&video_id='+aid+'&page=0&size=50',
+               	type: "GET",dataType: "jsonp",success: function(result1) {
+               		//reda = JSON.parse(JSON.stringify(result1.data.list));
+              for (var zz = 0; zz < result1.data.list.length; zz++){
+              	if(result1.data.list[zz].isIntact!=3){
+                             TvJSON.data[n] = {};
+                             TvJSON.data[n].mask = result1.data.list[zz].isvip;
+                             TvJSON.data[n].url = 'https://www.mgtv.com'+result1.data.list[zz].url; 
+                             n++
+                      }
+                } 
+                 SeeMe();
+               }});
+          		
+          		}
+
+               }  
+            },
+            error: function(callback) {
+                TvJSON.ok = null;
+                TvInfo.innerHTML = '解析失败';            	
+                console.log("fail=" + callback);
+            }
+        });
+    }
+    
 }
