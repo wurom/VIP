@@ -1,6 +1,6 @@
 var VIP_INFO = new Array(
 ["小七","https://2.08bk.com/?url="],
-["金桥","http://jqaaa.com/jx.php?url="],
+["奇米","https://qimihe.com/?url="],
 ["16","http://s.liu16.com/vip/?url="],
 ["OK","https://okjx.cc/?url="],
 ["618","http://nitian9.com/?url="],
