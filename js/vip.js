@@ -187,8 +187,8 @@ function GetAll(aid) {
             TvInfo.innerHTML = "cid错误...";
             return;
         }
-
-        var jsonurl = 'https://s.video.qq.com/get_playsource?id=' + cid + '&plat=2&type=1&data_type=1&video_type=3&plname=&otype=json&num_mod_cnt=99&_t=' + randomn(13);
+        var d = new Date().getTime();//js获取13位时间戳
+        var jsonurl = 'https://s.video.qq.com/get_playsource?id=' + cid + '&plat=2&type=1&data_type=1&video_type=3&plname=&otype=json&num_mod_cnt=99&_t=' + d;
         //var jsonurl = 'https://s.video.qq.com/loadplaylist?type=4&id='+cid+'&plname=qq&video_type=10&otype=json&year=2016';
         $.ajax({
             url: jsonurl,
