@@ -61,7 +61,8 @@ function HotJSON(ty,id,pid) {
     document.getElementById("test_colse").style.display = 'block';
     //test.className = 'vip';    
     test.innerHTML = ""; //清空内容
-    var tt = randomn(13);
+    //var tt = randomn(13);
+    var tt = new Date().getTime();//js获取13位时间戳
     var hotlist = [
     {"name":"","jsurl":''},
     {"name":"","jsurl":""},
@@ -100,6 +101,9 @@ function MeJSON() {
     document.getElementById("test_colse").style.display = 'block';
     //test.className = 'vip';    
     test.innerHTML = ""; //清空内容
+    /*for(info in tvlist) {
+    	test.innerHTML += '<label><a href="javascript:document.getElementById(\'url\').value=\'' + tvlist[info]["url"] + '\';GetAll();">' + tvlist[info]["name"] + '</a></label>';
+    }*/
     $.each(tvlist,function(infoIndex, info) {
         test.innerHTML += '<label><a href="javascript:document.getElementById(\'url\').value=\'' + info["url"] + '\';GetAll();">' + info["name"] + '</a></label>';
     });
@@ -188,7 +192,7 @@ function GetAll(aid) {
             return;
         }
         var d = new Date().getTime();//js获取13位时间戳
-        var jsonurl = 'https://s.video.qq.com/get_playsource?id=' + cid + '&plat=2&type=1&data_type=1&video_type=3&plname=&otype=json&num_mod_cnt=99&_t=' + d;
+        var jsonurl = 'http://s.video.qq.com/get_playsource?id=' + cid + '&plat=2&type=1&data_type=1&video_type=3&plname=&otype=json&num_mod_cnt=99&_t=' + d;
         //var jsonurl = 'https://s.video.qq.com/loadplaylist?type=4&id='+cid+'&plname=qq&video_type=10&otype=json&year=2016';
         $.ajax({
             url: jsonurl,
